@@ -1,7 +1,7 @@
 'use strict';
 
 function getDogImage(breedString) {
-  fetch(`https://dog.ceo/api/breed/${breedString}/images/random/`)
+  fetch(`https://dog.ceo/api/breed/${breedString}/images/random`)
     .then(response => response.json())
     .then(responseJson => {
       console.log(responseJson);
@@ -11,14 +11,15 @@ function getDogImage(breedString) {
 }
 
 function renderDogs(DogImage) {
-  let DogHtml = '';
-
-  DogImage.message.forEach(function(Url) {
-    DogHtml = DogHtml
-    .concat(`<img src ='${Url}' alt='This is a random image of a dog.'>`)
-  })
+  // let DogHtml = '';
+// 
+  // DogImage.message.forEach(function(Url) {
+  //   DogHtml = DogHtml
+  //   .concat(`<img src ='${Url}' alt='This is a random image of a dog.'>`)
+  // })
+  let DogHtml = `<img src='${DogImage.message}' alt='This is a random image of a dog.'>`
   console.log(DogHtml);
-  $('.results').html(DogHtml); 
+  $('#results').html(DogHtml); 
 }
 
 function loadDogBreeds(){

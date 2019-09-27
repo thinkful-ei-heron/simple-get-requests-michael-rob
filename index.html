@@ -11,10 +11,12 @@
 <body>
     <div class="container">
         <h1>Dog API: A Simple Example</h1>
-
         <form>
-          <input type="submit" value="Get a dog pic!">
+          <input type ="range" min="1" max="50" id="slider" value="3"></input>
+          <input type ="number" min="1" max="50" step="1" id="num" value="3"></input>
+          <input type="submit" value="Get dog pics!">
         </form>
+        <div class="results"></div>
     </div>
     <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
     <script src="index.js"></script>

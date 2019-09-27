@@ -2,6 +2,14 @@
 
 function getDogImage(breedString) {
   fetch(`https://dog.ceo/api/breed/${breedString}/images/random`)
+    .then(response => {
+      if(response.status >= 400){ //4xx and 5xx are errors, 6xx+ undefined
+        $('#results').html(`<p>Something went wrong: HTTP ${response.status}</p>`);
+        throw new Error("HTTP error");
+      } else {
+        return response;
+      }
+    })
     .then(response => response.json())
     .then(responseJson => {
       console.log(responseJson);
@@ -24,6 +32,14 @@ function renderDogs(DogImage) {
 
 function loadDogBreeds(){
   fetch('https://dog.ceo/api/breeds/list/all')
+  .then(response => {
+    if(response.status >= 400){ //4xx and 5xx are errors, 6xx+ undefined
+      $('#results').html(`<p>Something went wrong fetching the list of breeds: HTTP ${response.status}</p>`);
+      throw new Error("HTTP error");
+    } else {
+      return response;
+    }
+  })
     .then(response => response.json())
     .then(responseJson => parseDogBreeds(responseJson))
     .then(breeds => renderDogBreeds(breeds))

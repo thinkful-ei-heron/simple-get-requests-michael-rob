@@ -4,8 +4,29 @@ function getDogImages(num) {
   fetch(`https://dog.ceo/api/breeds/image/random/${num}`)
     .then(response => response.json())
     .then(responseJson => console.log(responseJson))
+    .then(responseJson => renderDogs(responseJson))
     .catch(error => console.log(error));
 }
+
+
+function accessJson(responseJson) {
+  return JSON.parse(responseJson)
+}
+
+function renderDogs(DogImage) {
+  const Dogs = accessJson(DogImage);
+  const DogHtml = '';
+
+  Dogs.message.forEach(function(Url) {
+    DogHtml = DogHtml
+    .concat(`<img src ='${Url}' alt='This is a random image of a dog.'>`)
+  })
+  /*for (let i in Dogs) {
+    DogHtml = DogHtml.concat(`<img src ='${Dogs[i]}' alt='This is a random image of a dog.'>`);
+  }; */
+  $('#results').html(DogHtml); 
+}
+
 
 function watchForm() {
   $('form').submit(event => {
